@@ -35,5 +35,5 @@
 
 * [Deployment](https://facebook.github.io/create-react-app/docs/deployment)
 * [Running tests](https://facebook.github.io/create-react-app/docs/running-tests)
-* [React Getting Started](https://facebook.github.io/create-react-app/docs/getting-started).
-* [React documentation](https://reactjs.org/).
+* [React Getting Started](https://facebook.github.io/create-react-app/docs/getting-started)
+* [React documentation](https://reactjs.org/)
