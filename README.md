@@ -21,7 +21,7 @@
   ```bash
   npm start
   ```
-[http://localhost:3000](http://localhost:3000)
+  [http://localhost:3000](http://localhost:3000)
 * Run tests in the interactive watch mode
   ```bash
   npm test 
