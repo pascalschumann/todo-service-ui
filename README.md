@@ -9,9 +9,11 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | b
 ```
 * Install latest lts node
 ```bash
-nvm install --lts
-nvm use --lts
+nvm install latest
+nvm use <printed version>
 ```
+* Install dependencies locally
+npm install
 * Run app in dev mode with auto reload and lint errors
 ```bash
 npm start
@@ -21,7 +23,7 @@ npm start
 ```bash
 npm test 
 ```
-* Build (production: minified and file names contains its file hash)
+* Build production (minified and file names contains its file hash)
 ```bash
 npm run build
 ```
