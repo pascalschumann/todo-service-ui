@@ -12,8 +12,11 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | b
 nvm install latest
 nvm use <printed version>
 ```
+
 * Install dependencies locally
+```bash
 npm install
+```
 * Run app in dev mode with auto reload and lint errors
 ```bash
 npm start
