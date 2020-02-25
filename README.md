@@ -1,5 +1,25 @@
 # Todo service UI
 
+## Model
+
+```json
+{
+Todo:
+  {
+    id: string,
+    name: string
+  }
+}
+```
+
+## Use cases
+
+* Show all todos.
+* Show a todo's details.
+* Creating a todo.
+* Updating a todo.
+* Deleting a todo.
+
 ## Deployment (dev)
 
 

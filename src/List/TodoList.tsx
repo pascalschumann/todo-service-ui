@@ -3,52 +3,73 @@ import List from '@material-ui/core/List';
 import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import {Button, TextField} from "@material-ui/core";
+import {
+    Redirect,
+} from "react-router-dom";
 
-
-interface Todo{
+export interface Todo{
     id: string;
     name: string;
 }
 
-interface MyState {
+interface TodoListState {
     error: any;
     isLoaded: boolean;
     items: Todo[];
 }
 
-interface MyListElementProperties {
+interface TodoListElementState {
     isEditable: boolean;
     todo: Todo;
 }
 
-export class MyListElement extends React.Component<MyListElementProperties> {
-    isEditable: boolean;
-    todo: Todo;
+// Somehow one cannot type into dialog
+export class TodoListElement extends React.Component<TodoListElementState> {
+    state: TodoListElementState;
 
-    constructor(props: MyListElementProperties) {
+    /*constructor(props: MyListElementProperties) {
         super(props);
         this.isEditable = props.isEditable;
         this.todo = props.todo;
+    }*/
+
+    constructor(props: TodoListElementState) {
+        super(props);
+        this.state = {isEditable: props.isEditable, todo: props.todo};
     }
 
     render() {
-        if(this.isEditable){
-            return <TextField value={this.todo.name} variant="outlined" onKeyUp={
+        if(this.state.isEditable){
+            return <TextField value={this.state.todo.name} variant="outlined" onKeyPress={
                 event=>{
-                    if (event.keyCode === 13) {
-                        this.isEditable = false
+                    // if (event.keyCode === 13) {
+                    if(event.key === 'Enter'){
+                        console.log('Enter pressed.')
+                        // this.state.isEditable = false
+                        this.setState((state: TodoListElementState) => {
+                            return {isEditable: false, todo: state.todo};
+                        })
                     }
-            }
-            } />
+            }} />
         }
         else{
-            return <button onClick={()=>{}}>{this.isEditable = true}</button>
+            /*return <button variant="contained" onMouseUp={
+                ()=>{this.isEditable = true}
+            }>{this.todo.name}</button>*/
+            return  <Button variant="contained" onMouseUp={
+                ()=>{
+                    // this.state.isEditable = true
+                    this.setState((state: TodoListElementState) => {
+                        return {isEditable: true, todo: state.todo};
+                    })
+                }
+            }>{this.state.todo.name}</Button>
         }
     }
 }
 
 export class TodoList extends React.Component {
-    state: MyState;
+    state: TodoListState;
 
     constructor(props: any[]) {
         super(props);
@@ -93,7 +114,15 @@ export class TodoList extends React.Component {
                 <List component="nav" aria-label="main">
                     {items.map(item => (
                         // item.name
-                                 <MyListElement key={item.id} isEditable={false} todo={item}></MyListElement>
+                                 // <TodoListElement key={item.id} isEditable={false} todo={item}></TodoListElement>
+                        <ListItem  key={item.id} button>
+                            <ListItemText onClick={
+                                ()=>{
+                                    // return <Redirect to="/todos" />
+                                    return <Redirect to={"/todos/" + item.id} />
+                                }
+                            } primary={item.name} />
+                        </ListItem>
                             ))}
                 </List>
             );
